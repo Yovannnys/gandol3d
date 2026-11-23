@@ -1,85 +1,32 @@
-<!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gandol3D | Impressão 3D Criativa e Personalizada</title>
-    <meta name="description" content="Presentes personalizados, canecas exclusivas, futebol, personagens articulados e lembranças em impressão 3D de alta resistência.">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome para ícones modernos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+<!-- ... existing code ... -->
     <style>
         :root {
-            --accent-primary: #ef4444;
-            --accent-secondary: #10b981;
-            --accent-glow: rgba(239, 68, 68, 0.25);
+            --accent-primary: #f97316;
+            --accent-secondary: #06b6d4;
+            --accent-glow: rgba(249, 115, 22, 0.25);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #090d16;
+            background-color: #070b14;
             color: #f8fafc;
             overflow-x: hidden;
         }
-
-        h1, h2, h3, .font-display {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        /* Fundo animado sutil com partículas/luzes */
-        .bg-grid-pattern {
-            background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-            background-size: 28px 28px;
-        }
-
-        .hero-glow {
-            background: radial-gradient(circle at 50% 0%, var(--accent-glow), transparent 65%);
-            transition: background 0.6s ease;
-        }
-
-        /* Animação suave de flutuação */
-        @keyframes floatSlow {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-        .animate-float {
-            animation: floatSlow 4s ease-in-out infinite;
-        }
-
-        /* Animação de entrada dos cards */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(18px) scale(0.98);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        .card-animate {
-            animation: fadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
+<!-- ... existing code ... -->
         /* Efeito de brilho nos cards */
         .product-card {
-            background: linear-gradient(145deg, rgba(30, 41, 59, 0.65), rgba(15, 23, 42, 0.85));
+            background: linear-gradient(155deg, rgba(30, 41, 59, 0.72), rgba(15, 23, 42, 0.92));
             border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .product-card:hover {
             transform: translateY(-6px);
             border-color: var(--accent-primary);
-            box-shadow: 0 20px 35px -15px var(--accent-glow);
+            box-shadow: 0 22px 40px -15px var(--accent-glow);
+        }
+
+        .svg-stage {
+            background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.09), rgba(15, 23, 42, 0.95));
         }
 
         /* Botão principal dinâmico */
@@ -90,130 +37,31 @@
         .btn-accent:hover {
             filter: brightness(1.12);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px -8px var(--accent-glow);
+            box-shadow: 0 10px 22px -8px var(--accent-glow);
         }
-
-        /* Barra de rolagem limpa para filtros no mobile */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style>
-</head>
-<body class="bg-grid-pattern min-h-screen flex flex-col">
-
-    <!-- =========================================================================
-         BARRA SUPERIOR DE VISUALIZAÇÃO DE CAMPANHAS (PARA TESTE DO PROPRIETÁRIO)
-         Permite alternar entre datas comemorativas com 1 clique para ver como a
-         vitrine se adapta automaticamente ao calendário comercial.
-         ========================================================================= -->
-    <div class="bg-slate-950/90 border-b border-slate-800/80 text-xs py-2 px-4 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-2 text-slate-400">
-                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Vitrine Sazonal Ativa: <strong id="current-season-label" class="text-white">Especial de Natal</strong></span>
-            </div>
+<!-- ... existing code ... -->
             <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
                 <span class="text-slate-500 hidden sm:inline mr-1">Simular data:</span>
                 <button onclick="mudarTemporada('natal')" data-season-btn="natal" class="season-switcher px-2.5 py-1 rounded-full font-medium transition bg-red-500/20 text-red-300 border border-red-500/40">🎄 Natal</button>
+                <button onclick="mudarTemporada('blackfriday')" data-season-btn="blackfriday" class="season-switcher px-2.5 py-1 rounded-full font-medium transition bg-slate-800/80 text-slate-300 hover:bg-slate-700">🏷️ Black Friday</button>
                 <button onclick="mudarTemporada('maes')" data-season-btn="maes" class="season-switcher px-2.5 py-1 rounded-full font-medium transition bg-slate-800/80 text-slate-300 hover:bg-slate-700">💐 Dia das Mães</button>
                 <button onclick="mudarTemporada('namorados')" data-season-btn="namorados" class="season-switcher px-2.5 py-1 rounded-full font-medium transition bg-slate-800/80 text-slate-300 hover:bg-slate-700">❤️ Namorados</button>
-                <button onclick="mudarTemporada('aulas')" data-season-btn="aulas" class="season-switcher px-2.5 py-1 rounded-full font-medium transition bg-slate-800/80 text-slate-300 hover:bg-slate-700">✏️ Volta às Aulas</button>
+                <button onclick="mudarTemporada('aulas')" data-season-btn="aulas" class="season-switcher px-2.5 py-1 rounded-full font-medium transition bg-slate-800/80 text-slate-300 hover:bg-slate-700">☕ Volta às Aulas</button>
             </div>
         </div>
     </div>
-
-    <!-- CABEÇALHO PRINCIPAL -->
-    <header class="border-b border-slate-800/60 bg-slate-900/50 backdrop-blur-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
-            <!-- Logo Gandol3D -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div id="logo-badge" class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center text-white font-extrabold text-lg shadow-lg transition-transform group-hover:scale-105" style="background-color: var(--accent-primary);">
-                    <i class="fa-solid fa-cube"></i>
-                </div>
-                <div>
-                    <span class="font-display font-extrabold text-xl sm:text-2xl tracking-tight text-white">Gandol<span id="logo-accent" style="color: var(--accent-primary);">3D</span></span>
-                    <p class="text-[11px] text-slate-400 leading-none hidden sm:block">Impressão 3D Criativa • Joinville/SC</p>
-                </div>
-            </a>
-
-            <!-- Navegação Rápida -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-                <a href="#catalogo" class="hover:text-white transition">Catálogo</a>
-                <a href="#diferenciais" class="hover:text-white transition">Qualidade PETG</a>
-                <a href="#encomenda" class="hover:text-white transition">Pedido Personalizado</a>
-            </nav>
-
-            <!-- Botão WhatsApp Header -->
-            <a href="https://wa.me/5549988921171?text=Ol%C3%A1%20Gandol3D!%20Escanei%20o%20QR%20Code%20e%20gostaria%20de%20conhecer%20os%20modelos." target="_blank" rel="noopener noreferrer"
-               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-emerald-900/30 transition transform hover:-translate-y-0.5">
-                <i class="fa-brands fa-whatsapp text-base sm:text-lg"></i>
-                <span>Falar no WhatsApp</span>
-            </a>
-        </div>
-    </header>
-
-    <!-- HERO SECTION (DINÂMICO CONFORME A TEMPORADA) -->
-    <section class="relative hero-glow pt-10 pb-14 sm:pt-16 sm:pb-20 px-4 sm:px-6 lg:px-8 border-b border-slate-800/60">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-10 items-center">
-            <!-- Coluna de Texto -->
-            <div class="lg:col-span-7 text-center lg:text-left space-y-6">
-                <div id="hero-tag" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold border backdrop-blur-sm"
-                     style="background-color: rgba(239, 68, 68, 0.14); border-color: rgba(239, 68, 68, 0.35); color: #fca5a5;">
-                    <i id="hero-tag-icon" class="fa-solid fa-sleigh"></i>
-                    <span id="hero-tag-text">Especial de Natal • Encomendas Abertas</span>
-                </div>
-
-                <h1 id="hero-title" class="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
-                    Presentes únicos e decoração de Natal em 3D
-                </h1>
-
-                <p id="hero-subtitle" class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                    Peças fabricadas em <strong>PETG de alta resistência</strong> com cores puras e vibrantes direto na impressão — sem pintura que descasca. De canecas personalizadas a personagens articulados e presentes criativos.
-                </p>
-
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
-                    <a href="#catalogo" class="btn-accent w-full sm:w-auto px-7 py-3.5 rounded-xl text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-xl">
-                        <span>Ver Coleção em Destaque</span>
-                        <i class="fa-solid fa-arrow-down"></i>
-                    </a>
-                    <a href="#encomenda" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 font-semibold text-sm sm:text-base flex items-center justify-center gap-2 transition">
-                        <i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i>
-                        <span>Criar Peça Personalizada</span>
-                    </a>
-                </div>
-
-                <!-- Selos de Confiança -->
-                <div class="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-xs text-slate-400">
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-check-circle text-emerald-400"></i> Cores sólidas sem tinta</span>
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-check-circle text-emerald-400"></i> Material PETG durável</span>
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-check-circle text-emerald-400"></i> Retirada e envio em Joinville/SC</span>
-                </div>
-            </div>
-
-            <!-- Coluna Visual Interativa -->
-            <div class="lg:col-span-5">
-                <div class="relative mx-auto max-w-md">
-                    <div class="rounded-3xl p-6 sm:p-8 bg-slate-900/90 border border-slate-700/70 shadow-2xl backdrop-blur-xl animate-float">
-                        <div class="flex items-center justify-between mb-5">
-                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Destaque da Vitrine</span>
-                            <span id="card-season-pill" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-red-500/20 text-red-300">Edição Limitada</span>
-                        </div>
-                        
-                        <!-- Vitrine Visual Ilustrativa -->
-                        <div id="hero-visual-box" class="h-48 sm:h-56 rounded-2xl flex flex-col items-center justify-center text-center p-6 mb-5 border border-white/10 relative overflow-hidden"
-                             style="background: linear-gradient(135deg, rgba(239,68,68,0.22), rgba(16,185,129,0.18));">
-                            <i id="hero-big-icon" class="fa-solid fa-gift text-6xl sm:text-7xl text-white drop-shadow-lg mb-3"></i>
-                            <p id="hero-visual-caption" class="font-display font-bold text-white text-lg">Kit Natal & Presentes 3D</p>
-                            <p class="text-xs text-slate-300 mt-1">Acabamento preciso • Feito sob encomenda</p>
+<!-- ... existing code ... -->
+                        <!-- Vitrine Visual Ilustrativa SVG 3D -->
+                        <div id="hero-visual-box" class="h-52 sm:h-60 rounded-2xl flex flex-col items-center justify-center text-center p-5 mb-5 border border-white/10 relative overflow-hidden"
+                             style="background: linear-gradient(135deg, rgba(249,115,22,0.20), rgba(6,182,212,0.16));">
+                            <div id="hero-svg-preview" class="w-32 h-32 mb-2 drop-shadow-2xl transition-transform duration-500 hover:scale-105"></div>
+                            <p id="hero-visual-caption" class="font-display font-bold text-white text-lg">Coleção Natalina & Presentes 3D</p>
+                            <p class="text-xs text-slate-300 mt-0.5">PETG Multicor • Base com QR Exclusivo</p>
                         </div>
 
                         <div class="grid grid-cols-3 gap-2.5 text-center">
                             <div class="p-2.5 rounded-xl bg-slate-800/70 border border-slate-700/50">
-                                <i class="fa-solid fa-mug-hot text-sky-400 mb-1"></i>
+                                <i class="fa-solid fa-mug-hot text-cyan-400 mb-1"></i>
                                 <p class="text-[11px] font-semibold text-slate-200">Canecas</p>
                             </div>
                             <div class="p-2.5 rounded-xl bg-slate-800/70 border border-slate-700/50">
@@ -222,7 +70,7 @@
                             </div>
                             <div class="p-2.5 rounded-xl bg-slate-800/70 border border-slate-700/50">
                                 <i class="fa-solid fa-robot text-amber-400 mb-1"></i>
-                                <p class="text-[11px] font-semibold text-slate-200">Personagens</p>
+                                <p class="text-[11px] font-semibold text-slate-200">Geek & Animes</p>
                             </div>
                         </div>
                     </div>
@@ -230,40 +78,10 @@
             </div>
         </div>
     </section>
-
-    <!-- SEÇÃO DE CATÁLOGO COM FILTROS ANIMADOS -->
-    <main id="catalogo" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-            <div>
-                <span class="text-xs font-bold uppercase tracking-widest" style="color: var(--accent-primary);">Catálogo Interativo</span>
-                <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white mt-1">Escolha seu estilo favorito</h2>
-            </div>
-            <p class="text-sm text-slate-400 max-w-md">
-                Toque em qualquer categoria abaixo para filtrar. Todos os itens podem ser personalizados nas suas cores favoritas.
-            </p>
-        </div>
-
-        <!-- Barra de Filtros por Categoria -->
-        <div id="filter-bar" class="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-4 mb-8">
-            <button onclick="filtrarCategoria('todos')" data-filter="todos" class="filter-btn active px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 text-white shadow-lg" style="background-color: var(--accent-primary);">
-                <i class="fa-solid fa-border-all"></i>
-                <span>Todos</span>
-            </button>
-            <button onclick="filtrarCategoria('temporada')" data-filter="temporada" id="filter-season-btn" class="filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-slate-800/80 text-slate-300 hover:bg-slate-700 border border-slate-700/60">
-                <i id="filter-season-icon" class="fa-solid fa-sleigh"></i>
-                <span id="filter-season-text">Destaque: Natal</span>
-            </button>
-            <button onclick="filtrarCategoria('canecas')" data-filter="canecas" class="filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-slate-800/80 text-slate-300 hover:bg-slate-700 border border-slate-700/60">
-                <i class="fa-solid fa-mug-hot text-sky-400"></i>
-                <span>Canecas Personalizadas</span>
-            </button>
-            <button onclick="filtrarCategoria('futebol')" data-filter="futebol" class="filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-slate-800/80 text-slate-300 hover:bg-slate-700 border border-slate-700/60">
-                <i class="fa-solid fa-futbol text-emerald-400"></i>
-                <span>Futebol</span>
-            </button>
+<!-- ... existing code ... -->
             <button onclick="filtrarCategoria('geek')" data-filter="geek" class="filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-slate-800/80 text-slate-300 hover:bg-slate-700 border border-slate-700/60">
                 <i class="fa-solid fa-gamepad text-amber-400"></i>
-                <span>Geek & Personagens</span>
+                <span>Geek & Animes</span>
             </button>
             <button onclick="filtrarCategoria('namorados')" data-filter="namorados" class="filter-btn px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-slate-800/80 text-slate-300 hover:bg-slate-700 border border-slate-700/60">
                 <i class="fa-solid fa-heart text-rose-400"></i>
@@ -277,180 +95,335 @@
         </div>
     </main>
 
-    <!-- SEÇÃO DIFERENCIAIS DA IMPRESSÃO 3D (PETG MULTICOR) -->
-    <section id="diferenciais" class="py-14 px-4 sm:px-6 lg:px-8 bg-slate-900/60 border-y border-slate-800/70">
+    <!-- SEÇÃO QUALIDADE GANDOL3D -->
+    <section id="diferenciais" class="py-16 px-4 sm:px-6 lg:px-8 bg-slate-900/60 border-y border-slate-800/70">
         <div class="max-w-7xl mx-auto">
             <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-white">Por que escolher as peças da Gandol3D?</h2>
-                <p class="text-slate-400 text-sm sm:text-base mt-2">Tecnologia de impressão precisa combinada com materiais selecionados para durar anos.</p>
+                <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">Tecnologia & Acabamento</span>
+                <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white mt-1">Qualidade Gandol3D</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2">Produção artesanal de precisão em Joinville/SC com materiais superiores para uso diário e decoração.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="p-6 rounded-2xl bg-slate-950/70 border border-slate-800">
-                    <div class="w-12 h-12 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-palette"></i>
+                <div class="p-6 rounded-3xl bg-slate-950/80 border border-slate-800 hover:border-amber-500/50 transition">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-fire-flame-curved"></i>
                     </div>
-                    <h3 class="font-display font-bold text-lg text-white mb-2">Cores Puras Sem Pintura</h3>
+                    <h3 class="font-display font-bold text-lg text-white mb-2">PETG Resistente ao Calor</h3>
                     <p class="text-sm text-slate-400 leading-relaxed">
-                        Cada peça é produzida diretamente na cor do filamento. Isso significa que a cor não risca, não desbota fácil e não descasca com o tempo.
+                        Diferente do plástico comum, usamos <strong>PETG HF de alta resistência térmica e mecânica</strong> — ideal para suportes de canecas de café quente, uso diário e alta durabilidade.
                     </p>
                 </div>
 
-                <div class="p-6 rounded-2xl bg-slate-950/70 border border-slate-800">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-shield-halved"></i>
+                <div class="p-6 rounded-3xl bg-slate-950/80 border border-slate-800 hover:border-cyan-500/50 transition">
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 text-cyan-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-layer-group"></i>
                     </div>
-                    <h3 class="font-display font-bold text-lg text-white mb-2">Material PETG de Alta Resistência</h3>
+                    <h3 class="font-display font-bold text-lg text-white mb-2">Multicor Sem Pintura</h3>
                     <p class="text-sm text-slate-400 leading-relaxed">
-                        Muito mais resistente a impactos e ao calor do que o plástico comum. Ideal para canecas, suportes térmicos de café, chaveiros e decorações.
+                        Cada cor faz parte da própria estrutura da peça impressa. Sem tinta ou adesivos: <strong>não descasca, não mancha e mantém o brilho vivo</strong> por anos.
                     </p>
                 </div>
 
-                <div class="p-6 rounded-2xl bg-slate-950/70 border border-slate-800">
-                    <div class="w-12 h-12 rounded-xl bg-sky-500/15 text-sky-400 flex items-center justify-center text-xl mb-4">
+                <div class="p-6 rounded-3xl bg-slate-950/80 border border-slate-800 hover:border-emerald-500/50 transition">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center text-xl mb-4">
                         <i class="fa-solid fa-qrcode"></i>
                     </div>
-                    <h3 class="font-display font-bold text-lg text-white mb-2">Autenticidade Gandol3D</h3>
+                    <h3 class="font-display font-bold text-lg text-white mb-2">QR Exclusivo na Base</h3>
                     <p class="text-sm text-slate-400 leading-relaxed">
-                        Acabamento limpo e assinatura digital integrada na base das peças, garantindo suporte rápido e facilidade para novos pedidos.
+                        Cada peça sai do estúdio com nosso <strong>QR Code embutido na base</strong> sem alterar o visual da obra — basta apontar a câmera para pedir novos modelos ou presentes.
                     </p>
                 </div>
             </div>
         </div>
     </section>
+<!-- ... existing code ... -->
+    <!-- MODAL DE VISTA RÁPIDA DO PRODUTO -->
+    <div id="quick-view-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl card-animate">
+            <button onclick="fecharModal()" aria-label="Fechar" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
 
-    <!-- SEÇÃO DE ENCOMENDA PERSONALIZADA DIRETO NO WHATSAPP -->
-    <section id="encomenda" class="py-14 sm:py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto rounded-3xl p-6 sm:p-10 bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 shadow-2xl">
-            <div class="text-center mb-8">
-                <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
-                    Orçamento Rápido
+            <div id="modal-badge" class="inline-block text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-lg bg-amber-500/15 text-amber-300 border border-amber-500/30 mb-4">
+                Destaque
+            </div>
+
+            <div id="modal-visual" class="w-full h-56 rounded-2xl svg-stage border border-white/10 flex items-center justify-center p-4 mb-5">
+                <!-- Ilustração SVG ou Foto -->
+            </div>
+
+            <div class="flex items-start justify-between gap-4 mb-2">
+                <h3 id="modal-title" class="font-display font-extrabold text-xl sm:text-2xl text-white">Nome do Produto</h3>
+                <span id="modal-price" class="px-3 py-1 rounded-xl bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 text-xs font-bold whitespace-nowrap">
+                    Sob Encomenda
                 </span>
-                <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-white mt-3">Quer algo exclusivo com seu nome, time ou tema?</h2>
-                <p class="text-slate-400 text-sm sm:text-base mt-2">
-                    Preencha os detalhes abaixo e envie direto para o nosso WhatsApp em Joinville/SC.
-                </p>
             </div>
 
-            <form id="custom-order-form" onsubmit="enviarEncomendaWhatsApp(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Seu Nome</label>
-                    <input type="text" id="cliente-nome" required placeholder="Ex: João Silva"
-                           class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-emerald-500">
-                </div>
+            <p id="modal-desc" class="text-sm text-slate-300 leading-relaxed mb-4"></p>
 
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Categoria do Pedido</label>
-                    <select id="cliente-categoria"
-                            class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-emerald-500">
-                        <option value="Especial de Natal / Data Comemorativa">Especial de Natal / Data Comemorativa</option>
-                        <option value="Caneca Personalizada (Nome / Time / Tema)">Caneca Personalizada (Nome / Time / Tema)</option>
-                        <option value="Futebol (Escudo / Chaveiro / Troféu)">Futebol (Escudo / Chaveiro / Troféu)</option>
-                        <option value="Personagem / Geek Articulado">Personagem / Geek Articulado</option>
-                        <option value="Presente Romântico / Namorados">Presente Romântico / Namorados</option>
-                        <option value="Outro Projeto 3D">Outro Projeto 3D</option>
-                    </select>
-                </div>
-
-                <div class="sm:col-span-2">
-                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Cores Desejadas (Temos: Vermelho, Azul, Amarelo, Verde, Preto, Branco, Marrom)</label>
-                    <input type="text" id="cliente-cores" placeholder="Ex: Amarelo, Marrom e Branco / ou Vermelho e Branco"
-                           class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-emerald-500">
-                </div>
-
-                <div class="sm:col-span-2">
-                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Descreva sua ideia ou quantidade</label>
-                    <textarea id="cliente-detalhes" rows="3" required placeholder="Ex: Gostaria de 2 canecas personalizadas com nomes em relevo ou um boneco articulado para presente..."
-                              class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-emerald-500"></textarea>
-                </div>
-
-                <div class="sm:col-span-2 pt-2">
-                    <button type="submit"
-                            class="w-full py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-950 transition transform hover:-translate-y-0.5">
-                        <i class="fa-brands fa-whatsapp text-xl"></i>
-                        <span>Enviar Pedido Personalizado no WhatsApp</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </section>
-
-    <!-- RODAPÉ PROFISSIONAL -->
-    <footer class="bg-slate-950 border-t border-slate-800/80 py-10 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div class="text-center sm:text-left">
-                <span class="font-display font-extrabold text-xl text-white">Gandol<span style="color: var(--accent-primary);">3D</span></span>
-                <p class="text-xs text-slate-400 mt-1">Impressão 3D Personalizada em PETG • Joinville, Santa Catarina - Brasil</p>
+            <div class="flex flex-wrap gap-2 mb-6 text-[11px] font-medium text-slate-300">
+                <span class="px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700"><i class="fa-solid fa-shield text-amber-400 mr-1"></i> PETG HF Alta Resistência</span>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700"><i class="fa-solid fa-palette text-cyan-400 mr-1"></i> Sem Pintura</span>
+                <span class="px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700"><i class="fa-solid fa-qrcode text-emerald-400 mr-1"></i> QR Exclusivo Gandol3D</span>
             </div>
 
-            <div class="flex items-center gap-4">
-                <a href="https://wa.me/5549988921171" target="_blank" rel="noopener noreferrer"
-                   class="w-10 h-10 rounded-xl bg-slate-900 hover:bg-emerald-600 text-slate-300 hover:text-white flex items-center justify-center border border-slate-800 transition" title="WhatsApp Gandol3D">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                </a>
-                <a href="#catalogo" class="text-xs text-slate-400 hover:text-white transition">Voltar ao topo ↑</a>
-            </div>
+            <a id="modal-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer"
+               class="w-full py-3.5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg transition">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>Encomendar este Modelo no WhatsApp</span>
+            </a>
         </div>
-        <div class="max-w-7xl mx-auto mt-6 pt-6 border-t border-slate-900 text-center text-xs text-slate-500">
-            © <span id="ano-atual"></span> Gandol3D. Todos os direitos reservados.
-        </div>
-    </footer>
+    </div>
+
+    <!-- BOTÃO FLUTUANTE DE WHATSAPP -->
+    <a href="https://wa.me/5549988921171?text=Ol%C3%A1%20Gandol3D!%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer"
+       aria-label="WhatsApp Gandol3D"
+       class="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center shadow-2xl shadow-emerald-950 transition transform hover:scale-110">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
 
     <!-- =========================================================================
-         JAVASCRIPT DE CONFIGURAÇÃO DE TEMPORADAS E CATÁLOGO DINÂMICO
+         JAVASCRIPT DE CONFIGURAÇÃO DE TEMPORADAS, ILUSTRAÇÕES SVG 3D E CATÁLOGO
          ========================================================================= -->
     <script>
         /**
          * =========================================================================
          * 1. CONFIG_TEMPORADA (PAINEL DO PROPRIETÁRIO - FÁCIL DE EDITAR)
          * =========================================================================
-         * Para mudar a campanha oficial do site conforme o calendário comercial
-         * (Natal, Dia das Mães, Dia dos Namorados, Volta às Aulas, etc.), basta
-         * alterar o valor de "TEMPORADA_PADRAO" abaixo!
          */
         const WHATSAPP_NUMERO = "5549988921171";
-        const TEMPORADA_PADRAO = "natal"; // Opções: 'natal', 'maes', 'namorados', 'aulas'
+        const TEMPORADA_PADRAO = "natal"; // Opções: 'natal', 'blackfriday', 'maes', 'namorados', 'aulas'
+
+        /**
+         * Biblioteca de Ilustrações Vetoriais SVG estilo 3D para cada modelo
+         */
+        const ILUSTRACOES_SVG = {
+            arvore_natal: `
+                <svg viewBox="0 0 160 160" class="w-36 h-36 drop-shadow-xl">
+                    <defs>
+                        <linearGradient id="treeG1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#059669"/></linearGradient>
+                        <linearGradient id="treeG2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#047857"/></linearGradient>
+                        <linearGradient id="starG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient>
+                    </defs>
+                    <ellipse cx="80" cy="144" rx="44" ry="8" fill="#020617" opacity="0.55"/>
+                    <rect x="70" y="122" width="20" height="20" rx="4" fill="#78350f"/>
+                    <polygon points="80,58 32,126 128,126" fill="url(#treeG2)"/>
+                    <polygon points="80,40 42,96 118,96" fill="url(#treeG1)"/>
+                    <polygon points="80,24 54,66 106,66" fill="#6ee7b7"/>
+                    <circle cx="64" cy="84" r="5" fill="#ef4444"/><circle cx="96" cy="88" r="5" fill="#f59e0b"/>
+                    <circle cx="54" cy="112" r="5.5" fill="#38bdf8"/><circle cx="82" cy="108" r="5.5" fill="#ef4444"/><circle cx="106" cy="114" r="5.5" fill="#fde047"/>
+                    <polygon points="80,8 84,18 95,18 86,24 89,34 80,28 71,34 74,24 65,18 76,18" fill="url(#starG)"/>
+                </svg>`,
+            bola_natal: `
+                <svg viewBox="0 0 160 160" class="w-36 h-36 drop-shadow-xl">
+                    <defs>
+                        <radialGradient id="ballR" cx="35%" cy="30%" r="70%"><stop offset="0%" stop-color="#fca5a5"/><stop offset="45%" stop-color="#ef4444"/><stop offset="100%" stop-color="#991b1b"/></radialGradient>
+                    </defs>
+                    <ellipse cx="80" cy="145" rx="36" ry="7" fill="#020617" opacity="0.5"/>
+                    <path d="M80,12 L80,30" stroke="#fbbf24" stroke-width="4" stroke-linecap="round"/>
+                    <rect x="68" y="28" width="24" height="12" rx="4" fill="#f59e0b"/>
+                    <circle cx="80" cy="86" r="48" fill="url(#ballR)"/>
+                    <path d="M36,76 Q80,62 124,76 L124,96 Q80,82 36,96 Z" fill="#ffffff" opacity="0.92"/>
+                    <text x="80" y="88" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="13" fill="#b91c1c">FAMÍLIA</text>
+                    <circle cx="62" cy="56" r="6" fill="#ffffff" opacity="0.35"/>
+                </svg>`,
+            presepio: `
+                <svg viewBox="0 0 160 160" class="w-36 h-36 drop-shadow-xl">
+                    <defs>
+                        <linearGradient id="archG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
+                    </defs>
+                    <ellipse cx="80" cy="144" rx="50" ry="8" fill="#020617" opacity="0.5"/>
+                    <path d="M34,136 L34,78 A46,46 0 0,1 126,78 L126,136 Z" fill="none" stroke="url(#archG)" stroke-width="10" stroke-linejoin="round"/>
+                    <circle cx="80" cy="46" r="6" fill="#fbbf24"/>
+                    <path d="M54,134 L54,96 A12,12 0 0,1 78,96 L78,134 Z" fill="#0284c7"/>
+                    <circle cx="66" cy="80" r="8" fill="#fde68a"/>
+                    <path d="M84,134 L84,102 A11,11 0 0,1 106,102 L106,134 Z" fill="#f43f5e"/>
+                    <circle cx="95" cy="87" r="7.5" fill="#fde68a"/>
+                    <rect x="70" y="122" width="20" height="12" rx="4" fill="#d97706"/>
+                    <circle cx="80" cy="119" r="5" fill="#fef3c7"/>
+                </svg>`,
+            caneca_natal: `
+                <svg viewBox="0 0 160 160" class="w-36 h-36 drop-shadow-xl">
+                    <ellipse cx="76" cy="144" rx="44" ry="8" fill="#020617" opacity="0.5"/>
+                    <path d="M112,62 C136,62 136,112 112,112" fill="none" stroke="#ef4444" stroke-width="12" stroke-linecap="round"/>
+                    <rect x="34" y="48" width="80" height="86" rx="14" fill="#dc2626"/>
+                    <rect x="34" y="48" width="80" height="16" rx="8" fill="#f8fafc"/>
+                    <rect x="44" y="76" width="60" height="36" rx="8" fill="#10b981"/>
+                    <polygon points="74,80 62,104 86,104" fill="#f8fafc"/>
+                    <circle cx="74" cy="78" r="3" fill="#fbbf24"/>
+                </svg>`,
+            caneca_nome: `
+                <svg viewBox="0 0 160 160" class="w-36 h-36 drop-shadow-xl">
+                    <defs>
+                        <linearGradient id="mugBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#0284c7"/></linearGradient>
+                    </defs>
+                    <ellipse cx="76" cy="144" rx="46" ry="8" fill="#020617" opacity="0.5"/>
+                    <path d="M112,60 C138,60 138,114 112,114" fill="none" stroke="#f97316" stroke-width="12" stroke-linecap="round"/>
+                    <rect x="32" y="46" width="82" height="88" rx="14" fill="url(#mugBlue)"/>
+                    <ellipse cx="73" cy="48" rx="39" ry="8" fill="#334155"/>
+                    <ellipse cx="73" cy="49" rx="32" ry="5" fill="#78350f"/>
+                    <rect x="40" y="74" width="66" height="32" rx="8" fill="#0f172a" stroke="#f97316" stroke-width="2.5"/>
+                    <text x="73" y="95" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="13" fill="#fb923c">SEU NOME</text>
+                </svg>`,
+            caneca_gamer: `
+                <svg viewBox="0 0 160 160" class="w-36 h-36 drop-shadow-xl">
+                    <ellipse cx="76" cy="144" rx="46" ry="8" fill="#020617" opacity="0.5"/>
+                    <path d="M112,62 C136,62 136,112 112,112" fill="none" stroke="#06b6d4" stroke-width="12" stroke-linecap="round"/>
+                    <rect x="32" y="48" width="82" height="86" rx="14" fill="#1e293b" stroke="#334155" stroke-width="3"/>
+                    <rect x="44" y="70" width="58" height="40" rx="10" fill="#0f172a"/>
+                    <rect x="53" y="86" width="14" height="5" rx="2" fill="#22d3ee"/>
+                    <rect x="57.5" y="81.5" width="5" height="14" rx="2" fill="#22d3ee"/>
+                    <circle cx="86" cy="85" r="3.5" fill="#f97316"/>
+                    <circle cx="93" cy="92" r="3.5" fill="#10b981"/>
+                </svg>`,
+            porta_copos: `
+                <svg viewBox="0 0 160 160" class="w-36 h-36 drop-shadow-xl">
+                    <ellipse cx="80" cy="144" rx="48" ry="8" fill="#020617" opacity="0.5"/>
+                    <polygon points="80,32 124,57 124,107 80,132 36,107 36,57" fill="#0f172a" stroke="#f97316" stroke-width="5"/>
+                    <polygon points="80,46 112,64 112,100 80,118 48,100 48,64" fill="#1e293b" stroke="#06b6d4" stroke-width="3"/>
+                    <circle cx="80" cy="82" r="14" fill="#f97316"/>
+                    <text x="80" y="87" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="13" fill="#ffffff">3D</text>
+                </svg>`,
+            trofeu_futebol: `
+                <svg viewBox="0 0 160 160" class="w-36 h-36 drop-shadow-xl">
+                    <defs>
+                        <linearGradient id="goldG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
+                    </defs>
+                    <ellipse cx="80" cy="145" rx="42" ry="7" fill="#020617" opacity="0.5"/>
+                    <rect x="52" y="122" width="56" height="16" rx="4" fill="#1e293b"/>
+                    <rect x="60" y="126" width="40" height="8" rx="2" fill="#f59e0b"/>
+                    <rect x="73" y="94" width="14" height="28" fill="url(#goldG)"/>
+                    <path d="M48,36 L112,36 L104,84 C102,96 58,96 56,84 Z" fill="url(#goldG)"/>
+                    <path d="M48,44 C30,44 30,72 52,72" fill="none" stroke="#fbbf24" stroke-width="7" stroke-linecap="round"/>
+                    <path d="M112,44 C130,44 130,72 108,72" fill="none" stroke="#fbbf24" stroke-width="7" stroke-linecap="round"/>
+                    <circle cx="80" cy="60" r="12" fill="#ffffff"/>
+                    <polygon points="80,53 86,58 84,65 76,65 74,58" fill="#0f172a"/>
+                </svg>`,
+            chaveiro_camisa: `
+                <svg viewBox="0 0 160 160" class="w-36 h-36 drop-shadow-xl">
+                    <ellipse cx="80" cy="145" rx="38" ry="7" fill="#020617" opacity="0.5"/>
+                    <circle cx="80" cy="24" r="10" fill="none" stroke="#94a3b8" stroke-width="4"/>
+                    <path d="M56,42 L104,42 L128,64 L114,78 L102,68 L102,126 L58,126 L58,68 L46,78 L32,64 Z" fill="#10b981" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+                    <text x="80" y="96" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="30" fill="#ffffff">10</text>
+                </svg>`,
+            suporte_futebol: `
+                <svg viewBox="0 0 160 160" class="w-36 h-36 drop-shadow-xl">
+                    <ellipse cx="80" cy="144" rx="46" ry="8" fill="#020617" opacity="0.5"/>
+                    <rect x="34" y="114" width="92" height="20" rx="6" fill="#059669"/>
+                    <circle cx="80" cy="76" r="40" fill="#f8fafc" stroke="#0f172a" stroke-width="4"/>
+                    <polygon points="80,58 96,70 90,89 70,89 64,70" fill="#0f172a"/>
+                    <path d="M80,36 L80,58 M116,64 L96,70 M103,108 L90,89 M57,108 L70,89 M44,64 L64,70" stroke="#0f172a" stroke-width="4"/>
+                </svg>`,
+            bob_esponja: `
+                <svg viewBox="0 0 160 160" class="w-36 h-36 drop-shadow-xl">
+                    <ellipse cx="80" cy="146" rx="42" ry="7" fill="#020617" opacity="0.5"/>
+                    <!-- Pernas -->
+                    <rect x="62" y="114" width="7" height="22" fill="#facc15"/>
+                    <rect x="91" y="114" width="7" height="22" fill="#facc15"/>
+                    <rect x="56" y="132" width="16" height="8" rx="4" fill="#0f172a"/>
+                    <rect x="88" y="132" width="16" height="8" rx="4" fill="#0f172a"/>
+                    <!-- Corpo Amarelo -->
+                    <rect x="44" y="24" width="72" height="72" rx="10" fill="#facc15" stroke="#eab308" stroke-width="3"/>
+                    <!-- Poros -->
+                    <circle cx="54" cy="36" r="4" fill="#ca8a04"/><circle cx="105" cy="40" r="4.5" fill="#ca8a04"/><circle cx="53" cy="78" r="3.5" fill="#ca8a04"/>
+                    <!-- Olhos -->
+                    <circle cx="68" cy="54" r="12" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+                    <circle cx="92" cy="54" r="12" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+                    <circle cx="70" cy="54" r="5.5" fill="#0284c7"/><circle cx="90" cy="54" r="5.5" fill="#0284c7"/>
+                    <circle cx="70" cy="54" r="2.5" fill="#0f172a"/><circle cx="90" cy="54" r="2.5" fill="#0f172a"/>
+                    <!-- Sorriso e Dentes -->
+                    <path d="M60,72 Q80,86 100,72" fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+                    <rect x="72" y="77" width="6" height="7" rx="1" fill="#ffffff" stroke="#0f172a" stroke-width="1.5"/>
+                    <rect x="82" y="77" width="6" height="7" rx="1" fill="#ffffff" stroke="#0f172a" stroke-width="1.5"/>
+                    <!-- Camisa e Calça -->
+                    <rect x="44" y="92" width="72" height="11" fill="#ffffff"/>
+                    <rect x="44" y="103" width="72" height="13" rx="3" fill="#78350f"/>
+                    <polygon points="80,92 75,106 80,112 85,106" fill="#ef4444"/>
+                </svg>`,
+            chibi_geek: `
+                <svg viewBox="0 0 160 160" class="w-36 h-36 drop-shadow-xl">
+                    <ellipse cx="80" cy="145" rx="40" ry="7" fill="#020617" opacity="0.5"/>
+                    <rect x="56" y="88" width="48" height="44" rx="14" fill="#0284c7"/>
+                    <rect x="44" y="32" width="72" height="62" rx="22" fill="#f97316"/>
+                    <rect x="54" y="48" width="52" height="28" rx="12" fill="#0f172a"/>
+                    <circle cx="68" cy="62" r="6" fill="#22d3ee"/>
+                    <circle cx="92" cy="62" r="6" fill="#22d3ee"/>
+                    <rect x="36" y="52" width="8" height="20" rx="4" fill="#38bdf8"/>
+                    <rect x="116" y="52" width="8" height="20" rx="4" fill="#38bdf8"/>
+                </svg>`,
+            porta_retrato_coracao: `
+                <svg viewBox="0 0 160 160" class="w-36 h-36 drop-shadow-xl">
+                    <ellipse cx="80" cy="145" rx="44" ry="7" fill="#020617" opacity="0.5"/>
+                    <rect x="46" y="128" width="68" height="10" rx="5" fill="#be123c"/>
+                    <path d="M80,126 C80,126 26,90 26,56 C26,38 40,26 56,26 C68,26 76,33 80,41 C84,33 92,26 104,26 C120,26 134,38 134,56 C134,90 80,126 80,126 Z" fill="#f43f5e" stroke="#ffffff" stroke-width="4"/>
+                    <path d="M80,110 C80,110 40,82 40,58 C40,46 49,39 59,39 C68,39 76,45 80,52 C84,45 92,39 101,39 C111,39 120,46 120,58 C120,82 80,110 80,110 Z" fill="#1e293b"/>
+                    <circle cx="68" cy="64" r="7" fill="#fda4af"/><circle cx="92" cy="64" r="7" fill="#fda4af"/>
+                </svg>`,
+            letras_casal: `
+                <svg viewBox="0 0 160 160" class="w-36 h-36 drop-shadow-xl">
+                    <ellipse cx="80" cy="144" rx="52" ry="8" fill="#020617" opacity="0.5"/>
+                    <rect x="24" y="122" width="112" height="14" rx="6" fill="#1e293b" stroke="#f43f5e" stroke-width="2"/>
+                    <text x="48" y="114" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="54" fill="#f8fafc">A</text>
+                    <path d="M80,106 C80,106 64,94 64,83 C64,77 69,73 74,73 C77,73 79,75 80,78 C81,75 83,73 86,73 C91,73 96,77 96,83 C96,94 80,106 80,106 Z" fill="#f43f5e"/>
+                    <text x="112" y="114" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="54" fill="#38bdf8">M</text>
+                </svg>`
+        };
 
         const CONFIG_TEMPORADA = {
             natal: {
                 nomeCurto: "Especial de Natal",
                 filtroTexto: "Destaque: Natal",
                 icone: "fa-sleigh",
-                iconeGrande: "fa-gift",
+                svgHero: ILUSTRACOES_SVG.arvore_natal,
                 tag: "Especial de Natal • Encomendas Abertas",
                 titulo: "Presentes únicos e decoração de Natal em 3D",
-                subtitulo: "Surpreenda neste fim de ano com enfeites de árvore, Papai Noel articulado, canecas temáticas de café e lembranças personalizadas em PETG de alta resistência.",
-                legendaVisual: "Coleção Natalina & Presentes",
+                subtitulo: "Surpreenda neste fim de ano com árvores geométricas, bolas personalizadas com nome, presépios minimalistas e canecas natalinas em PETG de alta resistência.",
+                legendaVisual: "Coleção Natalina & Presentes 3D",
                 pillVisual: "Edição de Natal",
-                corPrimaria: "#ef4444",   // Vermelho Natalino
-                corSecundaria: "#10b981", // Verde Pinheiro
+                corPrimaria: "#ef4444",
+                corSecundaria: "#10b981",
                 glow: "rgba(239, 68, 68, 0.25)"
+            },
+            blackfriday: {
+                nomeCurto: "Black Friday & Lançamento",
+                filtroTexto: "Destaque: Black Friday",
+                icone: "fa-tags",
+                svgHero: ILUSTRACOES_SVG.caneca_nome,
+                tag: "Semana Black Friday • Kits & Personalizados",
+                titulo: "Combos especiais em canecas, futebol e personagens 3D",
+                subtitulo: "Aproveite condições especiais para encomendar presentes personalizados, kits de canecas térmicas e colecionáveis multicor direto do estúdio em Joinville.",
+                legendaVisual: "Ofertas & Kits Personalizados",
+                pillVisual: "Black Friday 3D",
+                corPrimaria: "#f97316",
+                corSecundaria: "#06b6d4",
+                glow: "rgba(249, 115, 22, 0.28)"
             },
             maes: {
                 nomeCurto: "Dia das Mães",
                 filtroTexto: "Destaque: Dia das Mães",
                 icone: "fa-heart",
-                iconeGrande: "fa-spa",
+                svgHero: ILUSTRACOES_SVG.porta_retrato_coracao,
                 tag: "Especial Dia das Mães • Presentes com Carinho",
                 titulo: "Homenageie quem você ama com presentes 3D exclusivos",
-                subtitulo: "Vasos decorativos modernos, canecas exclusivas para o café da manhã, porta-retratos personalizados e lembranças feitas sob medida em cores vibrantes.",
+                subtitulo: "Porta-retratos personalizados, canecas exclusivas para o café da manhã e letras decorativas feitas sob medida em cores vibrantes.",
                 legendaVisual: "Coleção Dia das Mães",
                 pillVisual: "Edição Especial",
-                corPrimaria: "#ec4899",   // Rosa Vibrante
-                corSecundaria: "#a855f7", // Roxo Suave
+                corPrimaria: "#ec4899",
+                corSecundaria: "#a855f7",
                 glow: "rgba(236, 72, 153, 0.25)"
             },
             namorados: {
                 nomeCurto: "Dia dos Namorados",
                 filtroTexto: "Destaque: Namorados",
                 icone: "fa-heart-pulse",
-                iconeGrande: "fa-heart",
+                svgHero: ILUSTRACOES_SVG.letras_casal,
                 tag: "Especial Dia dos Namorados • Edição Romântica",
                 titulo: "Presentes criativos que eternizam momentos a dois",
-                subtitulo: "Kit de canecas de casal, chaveiros magnéticos, placas com iniciais e esculturas românticas em impressão 3D de alta durabilidade.",
+                subtitulo: "Iniciais 3D para decoração, porta-retratos em formato de coração e canecas personalizadas de casal em impressão 3D de alta durabilidade.",
                 legendaVisual: "Coleção Namorados & Casais",
                 pillVisual: "Edição Romântica",
-                corPrimaria: "#f43f5e",   // Vermelho Rubi
+                corPrimaria: "#f43f5e",
                 corSecundaria: "#fb7185",
                 glow: "rgba(244, 63, 94, 0.25)"
             },
@@ -458,144 +431,199 @@
                 nomeCurto: "Volta às Aulas",
                 filtroTexto: "Destaque: Volta às Aulas",
                 icone: "fa-graduation-cap",
-                iconeGrande: "fa-mug-hot",
+                svgHero: ILUSTRACOES_SVG.caneca_gamer,
                 tag: "Volta às Aulas • Rotina & Café Personalizado",
                 titulo: "Canecas com nome, chaveiros de mochila e organização 3D",
-                subtitulo: "Comece a rotina com estilo! Canecas térmicas personalizadas com nome ou curso, identificadores de mochila e porta-objetos criativos em PETG.",
+                subtitulo: "Comece a rotina com estilo! Canecas térmicas personalizadas com nome ou curso, chaveiros de camisa e porta-copos criativos em PETG.",
                 legendaVisual: "Kit Estudo, Café & Escritório",
                 pillVisual: "Volta às Aulas",
-                corPrimaria: "#0ea5e9",   // Azul Ciano
-                corSecundaria: "#f59e0b", // Amarelo Destaque
-                glow: "rgba(14, 165, 233, 0.25)"
+                corPrimaria: "#06b6d4",
+                corSecundaria: "#f97316",
+                glow: "rgba(6, 182, 212, 0.25)"
             }
         };
 
         /**
          * =========================================================================
-         * 2. CATÁLOGO DE PRODUTOS (COMO ADICIONAR SUAS FOTOS REAIS)
+         * 2. CATÁLOGO ENRIQUECIDO COM 14 PRODUTOS ESTRELA
          * =========================================================================
-         * Quando você tirar fotos das suas peças impressas:
-         * 1. Coloque a foto na mesma pasta do arquivo index.html (ex: "bob-esponja.jpg").
-         * 2. No produto desejado abaixo, preencha o campo imagem: "bob-esponja.jpg".
-         * 3. Enquanto estiver vazio (""), o site exibe automaticamente um visual
-         *    moderno com ícone e gradiente para não ficar nenhum espaço quebrado!
          */
         const PRODUTOS = [
+            // --- NATAL ---
             {
                 id: 1,
-                nome: "Bob Esponja Articulado Multicor",
-                categoria: "geek",
-                temporadas: ["natal", "aulas"], // Aparece também nos destaques dessas datas
-                destaqueBadge: "Sucesso de Vendas",
-                descricao: "Boneco articulado montado em peças separadas com cores puras (amarelo, marrom, branco, vermelho e preto). Sem pintura que descasca!",
-                material: "PETG Multicor • Articulação Livre",
-                icone: "fa-face-smile-beam",
-                gradiente: "from-amber-500/30 via-yellow-500/20 to-amber-900/30",
-                corIcone: "text-amber-300",
-                imagem: "" // <-- Coloque aqui o nome da sua foto real, ex: "bob-esponja.jpg"
+                nome: "Árvore de Natal Geométrica LED",
+                categoria: "temporada",
+                temporadas: ["natal", "blackfriday"],
+                destaqueBadge: "Especial de Natal",
+                preco: "Sob Encomenda",
+                descricao: "Design moderno em espiral geométrica ideal para iluminação interna com vela LED. Acabamento translúcido ou verde pinheiro.",
+                material: "PETG HF Alta Resistência",
+                svgKey: "arvore_natal",
+                imagem: ""
             },
             {
                 id: 2,
-                nome: "Kit Enfeites de Natal Personalizados",
+                nome: "Enfeite Bola Personalizada com Nome",
                 categoria: "temporada",
                 temporadas: ["natal"],
-                destaqueBadge: "Especial de Natal",
-                descricao: "Bolas de Natal com nomes da família, flocos de neve e mini árvores em vermelho, verde e branco. Leves, inquebráveis e reutilizáveis.",
-                material: "PETG Resistente • Cores Natalinas",
-                icone: "fa-tree",
-                gradiente: "from-red-600/30 via-emerald-600/20 to-slate-900",
-                corIcone: "text-red-400",
+                destaqueBadge: "Campeã de Pedidos",
+                preco: "Sob Encomenda",
+                descricao: "Bola natalina multicor com o nome de cada membro da família ou pet em alto relevo. Leve, resistente e não quebra se cair.",
+                material: "PETG Multicor • Sem Pintura",
+                svgKey: "bola_natal",
                 imagem: ""
             },
             {
                 id: 3,
-                nome: "Caneca Personalizada com Nome ou Tema 3D",
-                categoria: "canecas",
-                temporadas: ["natal", "maes", "aulas"],
-                destaqueBadge: "Favorita do Café",
-                descricao: "Caneca térmica de café ou chá com revestimento externo em relevo 3D (nome, profissão, time ou personagem). Leve, resistente e exclusiva!",
-                material: "PETG Térmico • Sob Medida",
-                icone: "fa-mug-hot",
-                gradiente: "from-sky-500/30 via-blue-600/20 to-slate-900",
-                corIcone: "text-sky-300",
+                nome: "Presépio Minimalista 3D",
+                categoria: "temporada",
+                temporadas: ["natal"],
+                destaqueBadge: "Decoração Sofisticada",
+                preco: "Sob Encomenda",
+                descricao: "Conjunto minimalista moderno em arco sagrado com figuras estilizadas. Perfeito para aparadores, mesas e presentes de fim de ano.",
+                material: "PETG Alta Durabilidade",
+                svgKey: "presepio",
                 imagem: ""
             },
             {
                 id: 4,
-                nome: "Escudo 3D & Chaveiro Time de Futebol",
-                categoria: "futebol",
-                temporadas: ["natal", "namorados"],
-                destaqueBadge: "Paixão Nacional",
-                descricao: "Escudos em relevo multicor para mesa, parede ou chaveiro. Cores fiéis do seu time do coração sem adesivos que soltam.",
-                material: "PETG Multicor • Acabamento Nítido",
-                icone: "fa-futbol",
-                gradiente: "from-emerald-500/30 via-green-600/20 to-slate-900",
-                corIcone: "text-emerald-300",
+                nome: "Porta-Panetone / Caneca Natalina",
+                categoria: "temporada",
+                temporadas: ["natal", "blackfriday"],
+                destaqueBadge: "Kit Festa & Café",
+                preco: "Sob Encomenda",
+                descricao: "Suporte temático natalino para mini panetone ou caneca de chocolate quente. Um presente criativo e reutilizável todo ano.",
+                material: "PETG Resistente ao Calor",
+                svgKey: "caneca_natal",
                 imagem: ""
             },
+
+            // --- CANECAS PERSONALIZADAS ---
             {
                 id: 5,
-                nome: "Chaveiro Duplo Coração / Iniciais Casal",
-                categoria: "namorados",
-                temporadas: ["namorados", "maes"],
-                destaqueBadge: "Presente Criativo",
-                descricao: "Par de chaveiros que se encaixam perfeitamente com as iniciais do casal ou data especial. Ideal para datas românticas.",
-                material: "PETG Sólido • Personalizado",
-                icone: "fa-heart",
-                gradiente: "from-rose-500/30 via-pink-600/20 to-slate-900",
-                corIcone: "text-rose-300",
+                nome: "Caneca Térmica Relevo 3D com Nome",
+                categoria: "canecas",
+                temporadas: ["natal", "blackfriday", "maes", "aulas"],
+                destaqueBadge: "Favorita do Café",
+                preco: "Sob Encomenda",
+                descricao: "Caneca térmica de café com revestimento em PETG resistente ao calor e nome personalizado em relevo 3D que nunca apaga.",
+                material: "PETG Térmico • Sem Pintura",
+                svgKey: "caneca_nome",
                 imagem: ""
             },
             {
                 id: 6,
-                nome: "Papai Noel & Rena Articulados de Mesa",
-                categoria: "temporada",
-                temporadas: ["natal"],
-                destaqueBadge: "Edição Limitada",
-                descricao: "Figuras natalinas articuladas para decorar estantes, escritórios ou presentear no amigo secreto com criatividade.",
-                material: "PETG Multicor • Sem Pintura",
-                icone: "fa-sleigh",
-                gradiente: "from-red-500/30 via-amber-500/20 to-slate-900",
-                corIcone: "text-amber-300",
+                nome: "Capa/Suporte de Caneca Gamer & Profissões",
+                categoria: "canecas",
+                temporadas: ["blackfriday", "aulas"],
+                destaqueBadge: "Setup & Escritório",
+                preco: "Sob Encomenda",
+                descricao: "Capa térmica ergonômica com ícones gamer, cursos ou profissões em relevo multicor. Protege as mãos do calor e dá estilo à mesa.",
+                material: "PETG HF Alta Resistência",
+                svgKey: "caneca_gamer",
                 imagem: ""
             },
             {
                 id: 7,
-                nome: "Caneca Temática & Porta-Copos Multicor",
+                nome: "Porta-Copos Temático Colecionável",
                 categoria: "canecas",
-                temporadas: ["aulas", "maes"],
-                destaqueBadge: "Café & Escritório",
-                descricao: "Conjunto de caneca com alça ergonômica e descanso de copos personalizado em alto relevo para sua mesa de café ou trabalho.",
-                material: "PETG Robusto • Design Moderno",
-                icone: "fa-mug-saucer",
-                gradiente: "from-indigo-500/30 via-purple-600/20 to-slate-900",
-                corIcone: "text-indigo-300",
+                temporadas: ["blackfriday", "aulas"],
+                destaqueBadge: "Kit Mesa Completa",
+                preco: "Sob Encomenda",
+                descricao: "Descanso de copos e canecas com relevo geométrico antiderrapante em duas cores. Disponível avulso ou em kit com 4 unidades.",
+                material: "PETG Lavável • Multicor",
+                svgKey: "porta_copos",
                 imagem: ""
             },
+
+            // --- FUTEBOL ---
             {
                 id: 8,
-                nome: "Mini Troféu & Suporte de Bola Colecionável",
+                nome: "Troféu Miniatura & Escudo 3D de Time",
                 categoria: "futebol",
-                temporadas: ["aulas"],
-                destaqueBadge: "Premiação & Decoração",
-                descricao: "Troféus personalizados para campeonatos amadores, confraternizações ou decoração de quarto gamer/esportivo.",
-                material: "PETG Alta Resistência",
-                icone: "fa-trophy",
-                gradiente: "from-yellow-500/30 via-amber-600/20 to-slate-900",
-                corIcone: "text-yellow-300",
+                temporadas: ["blackfriday", "natal"],
+                destaqueBadge: "Paixão Nacional",
+                preco: "Sob Encomenda",
+                descricao: "Escudo em relevo multicor ou mini troféu personalizado para estante, escritório ou premiação de campeonatos.",
+                material: "PETG Multicor • Sem Pintura",
+                svgKey: "trofeu_futebol",
                 imagem: ""
             },
             {
                 id: 9,
-                nome: "Vaso Geométrico & Porta-Retrato 3D",
+                nome: "Chaveiro Camisa Personalizada com Número",
+                categoria: "futebol",
+                temporadas: ["aulas", "natal"],
+                destaqueBadge: "Lembrança Top",
+                preco: "Sob Encomenda",
+                descricao: "Mini uniforme nas cores do seu time com o número e nome que você escolher. Super resistente para chaves e mochilas.",
+                material: "PETG Sólido • Alta Resistência",
+                svgKey: "chaveiro_camisa",
+                imagem: ""
+            },
+            {
+                id: 10,
+                nome: "Suporte de Controle/Celular Futebol",
+                categoria: "futebol",
+                temporadas: ["blackfriday", "namorados"],
+                destaqueBadge: "Gamer & Torcedor",
+                preco: "Sob Encomenda",
+                descricao: "Base temática de bola de futebol para apoiar celular ou controle de videogame com estabilidade e visual moderno.",
+                material: "PETG Robusto • Base QR",
+                svgKey: "suporte_futebol",
+                imagem: ""
+            },
+
+            // --- GEEK & ANIMES ---
+            {
+                id: 11,
+                nome: "Bob Esponja Articulado Multicolorido",
+                categoria: "geek",
+                temporadas: ["natal", "blackfriday", "aulas"],
+                destaqueBadge: "Destaque do Estúdio",
+                preco: "Sob Encomenda",
+                descricao: "Boneco articulado montado em peças separadas com cores puras (amarelo, marrom, branco, vermelho e preto). Sem tinta que descasca!",
+                material: "PETG Multicor • Articulação Livre",
+                svgKey: "bob_esponja",
+                imagem: ""
+            },
+            {
+                id: 12,
+                nome: "Miniatura Colecionável Estilo Chibi/Action",
+                categoria: "geek",
+                temporadas: ["blackfriday", "aulas"],
+                destaqueBadge: "Colecionadores",
+                preco: "Sob Encomenda",
+                descricao: "Personagens estilizados com acabamento limpo e cores sólidas para decorar estantes, mesas gamer ou presentear fãs.",
+                material: "PETG HF • Alta Definição",
+                svgKey: "chibi_geek",
+                imagem: ""
+            },
+
+            // --- NAMORADOS & PRESENTES ---
+            {
+                id: 13,
+                nome: "Porta-Retrato Coração 3D Personalizado",
                 categoria: "namorados",
-                temporadas: ["maes", "namorados"],
-                destaqueBadge: "Decoração Afetiva",
-                descricao: "Design contemporâneo para suculentas ou fotos especiais. Um presente duradouro e sofisticado para mães e casais.",
-                material: "PETG Impermeável • Acabamento Fino",
-                icone: "fa-spa",
-                gradiente: "from-fuchsia-500/30 via-pink-500/20 to-slate-900",
-                corIcone: "text-fuchsia-300",
+                temporadas: ["namorados", "maes"],
+                destaqueBadge: "Presente Afetivo",
+                preco: "Sob Encomenda",
+                descricao: "Moldura em formato de coração com base reforçada para eternizar fotos especiais com quem você ama.",
+                material: "PETG Sólido • Acabamento Fino",
+                svgKey: "porta_retrato_coracao",
+                imagem: ""
+            },
+            {
+                id: 14,
+                nome: "Letras 3D Casal & Datas Especiais",
+                categoria: "namorados",
+                temporadas: ["namorados", "maes"],
+                destaqueBadge: "Decoração Romântica",
+                preco: "Sob Encomenda",
+                descricao: "Iniciais unidas por um coração sobre base personalizada com nome ou data marcante. Ideal para ensaios, quartos e presentes.",
+                material: "PETG Multicor • Sob Medida",
+                svgKey: "letras_casal",
                 imagem: ""
             }
         ];
@@ -609,32 +637,27 @@
             if (!cfg) return;
             temporadaAtual = chave;
 
-            // Atualiza variáveis CSS globais
             document.documentElement.style.setProperty('--accent-primary', cfg.corPrimaria);
             document.documentElement.style.setProperty('--accent-secondary', cfg.corSecundaria);
             document.documentElement.style.setProperty('--accent-glow', cfg.glow);
 
-            // Atualiza textos e ícones da Hero Section
             document.getElementById('current-season-label').textContent = cfg.nomeCurto;
             document.getElementById('hero-tag-text').textContent = cfg.tag;
             document.getElementById('hero-tag-icon').className = `fa-solid ${cfg.icone}`;
             document.getElementById('hero-title').textContent = cfg.titulo;
             document.getElementById('hero-subtitle').textContent = cfg.subtitulo;
-            document.getElementById('hero-big-icon').className = `fa-solid ${cfg.iconeGrande} text-6xl sm:text-7xl text-white drop-shadow-lg mb-3`;
+            document.getElementById('hero-svg-preview').innerHTML = cfg.svgHero;
             document.getElementById('hero-visual-caption').textContent = cfg.legendaVisual;
             document.getElementById('card-season-pill').textContent = cfg.pillVisual;
 
-            // Atualiza estilo da tag superior
             const heroTag = document.getElementById('hero-tag');
             heroTag.style.backgroundColor = cfg.glow;
             heroTag.style.borderColor = cfg.corPrimaria;
             heroTag.style.color = "#ffffff";
 
-            // Atualiza botão de filtro de temporada
             document.getElementById('filter-season-text').textContent = cfg.filtroTexto;
             document.getElementById('filter-season-icon').className = `fa-solid ${cfg.icone}`;
 
-            // Atualiza estado visual dos botões da barra superior
             document.querySelectorAll('.season-switcher').forEach(btn => {
                 if (btn.dataset.seasonBtn === chave) {
                     btn.className = "season-switcher px-2.5 py-1 rounded-full font-bold transition text-white shadow";
@@ -645,7 +668,6 @@
                 }
             });
 
-            // Reaplica o filtro ativo para atualizar cores dos botões e ordem dos itens
             filtrarCategoria(filtroAtual);
         }
 
@@ -653,7 +675,6 @@
         function filtrarCategoria(categoria) {
             filtroAtual = categoria;
 
-            // Atualiza aparência dos botões de filtro
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 if (btn.dataset.filter === categoria) {
                     btn.style.backgroundColor = "var(--accent-primary)";
@@ -666,7 +687,6 @@
                 }
             });
 
-            // Filtra os produtos
             let listaFiltrada = PRODUTOS.filter(prod => {
                 if (categoria === 'todos') return true;
                 if (categoria === 'temporada') {
@@ -675,7 +695,6 @@
                 return prod.categoria === categoria;
             });
 
-            // Na visão "Todos", coloca os itens da temporada atual primeiro para dar destaque comercial
             if (categoria === 'todos') {
                 listaFiltrada.sort((a, b) => {
                     const aDestaque = a.temporadas && a.temporadas.includes(temporadaAtual) ? 1 : 0;
@@ -687,59 +706,110 @@
             renderizarProdutos(listaFiltrada);
         }
 
-        // Gera o HTML dos cards
+        // Gera o HTML dos cards com ilustrações SVG detalhadas
         function renderizarProdutos(lista) {
             const grid = document.getElementById('products-grid');
             grid.innerHTML = "";
 
             lista.forEach((prod, index) => {
                 const isTemporadaAtual = prod.temporadas && prod.temporadas.includes(temporadaAtual);
+                const svgIlustracao = ILUSTRACOES_SVG[prod.svgKey] || ILUSTRACOES_SVG.chibi_geek;
                 const mensagemWhats = encodeURIComponent(
-                    `Olá Gandol3D! Vi o modelo "${prod.nome}" no catálogo online e gostaria de saber valores e opções de cores.`
+                    `Olá Gandol3D! Vi o modelo "${prod.nome}" no site e gostaria de saber valores e opções de cores.`
                 );
                 const linkWhats = `https://wa.me/${WHATSAPP_NUMERO}?text=${mensagemWhats}`;
 
-                // Área visual: usa foto real se configurada, ou ilustração moderna com fallback
                 const visualHTML = prod.imagem
-                    ? `<img src="${prod.imagem}" alt="${prod.nome}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-48 object-cover rounded-2xl mb-4 border border-white/10">
-                       <div style="display:none;" class="w-full h-48 rounded-2xl mb-4 bg-gradient-to-br ${prod.gradiente} border border-white/10 flex flex-col items-center justify-center p-4 text-center">
-                           <i class="fa-solid ${prod.icone} text-5xl ${prod.corIcone} mb-2"></i>
-                           <span class="text-[11px] text-slate-300 font-medium">${prod.material}</span>
+                    ? `<img src="${prod.imagem}" alt="${prod.nome}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-52 object-cover rounded-2xl mb-4 border border-white/10">
+                       <div style="display:none;" onclick="abrirModal(${prod.id})" class="cursor-pointer w-full h-52 rounded-2xl mb-4 svg-stage border border-white/10 flex flex-col items-center justify-center p-4 relative overflow-hidden group">
+                           <div class="transition-transform duration-300 group-hover:scale-110">${svgIlustracao}</div>
                        </div>`
-                    : `<div class="w-full h-48 rounded-2xl mb-4 bg-gradient-to-br ${prod.gradiente} border border-white/10 flex flex-col items-center justify-center p-4 text-center relative overflow-hidden group">
-                           <i class="fa-solid ${prod.icone} text-5xl ${prod.corIcone} mb-2.5 transition-transform duration-300 group-hover:scale-110"></i>
-                           <span class="text-[11px] text-slate-200/90 font-medium px-2.5 py-1 rounded-full bg-slate-950/50 backdrop-blur-sm">${prod.material}</span>
+                    : `<div onclick="abrirModal(${prod.id})" class="cursor-pointer w-full h-52 rounded-2xl mb-4 svg-stage border border-white/10 flex flex-col items-center justify-center p-4 relative overflow-hidden group">
+                           <div class="transition-transform duration-300 group-hover:scale-110">${svgIlustracao}</div>
+                           <span class="absolute bottom-2.5 right-2.5 text-[10px] font-semibold px-2.5 py-1 rounded-full bg-slate-950/75 text-slate-300 border border-white/10 opacity-85 group-hover:opacity-100">
+                               <i class="fa-solid fa-magnifying-glass-plus mr-1 text-cyan-400"></i>Detalhes
+                           </span>
                        </div>`;
 
                 const card = document.createElement('article');
                 card.className = "product-card rounded-3xl p-5 flex flex-col justify-between card-animate";
-                card.style.animationDelay = `${index * 60}ms`;
+                card.style.animationDelay = `${index * 45}ms`;
 
                 card.innerHTML = `
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-3">
-                            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700/70">
+                            <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-slate-800/90 text-slate-300 border border-slate-700/70">
                                 ${prod.destaqueBadge}
                             </span>
-                            ${isTemporadaAtual ? `<span class="text-[11px] font-bold px-2.5 py-1 rounded-lg text-white" style="background-color: var(--accent-primary);">★ Em Alta</span>` : ''}
+                            ${isTemporadaAtual ? `<span class="text-[11px] font-bold px-2.5 py-1 rounded-lg text-white shadow" style="background-color: var(--accent-primary);">★ Em Alta</span>` : ''}
                         </div>
 
                         ${visualHTML}
 
-                        <h3 class="font-display font-bold text-lg text-white leading-snug mb-2">${prod.nome}</h3>
-                        <p class="text-sm text-slate-400 leading-relaxed mb-5">${prod.descricao}</p>
+                        <div class="flex items-start justify-between gap-2 mb-2">
+                            <h3 class="font-display font-bold text-lg text-white leading-snug">${prod.nome}</h3>
+                        </div>
+
+                        <p class="text-sm text-slate-400 leading-relaxed mb-4">${prod.descricao}</p>
+
+                        <!-- Selos técnicos -->
+                        <div class="flex flex-wrap gap-1.5 mb-5">
+                            <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20">${prod.material}</span>
+                            <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">QR Exclusivo Gandol3D</span>
+                            <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700">${prod.preco}</span>
+                        </div>
                     </div>
 
-                    <a href="${linkWhats}" target="_blank" rel="noopener noreferrer"
-                       class="w-full py-3 px-4 rounded-xl bg-emerald-600/90 hover:bg-emerald-500 text-white font-semibold text-sm flex items-center justify-center gap-2 transition shadow-md">
-                        <i class="fa-brands fa-whatsapp text-base"></i>
-                        <span>Pedir no WhatsApp</span>
-                    </a>
+                    <div class="flex items-center gap-2">
+                        <a href="${linkWhats}" target="_blank" rel="noopener noreferrer"
+                           class="flex-1 py-3 px-4 rounded-xl bg-emerald-600/95 hover:bg-emerald-500 text-white font-semibold text-sm flex items-center justify-center gap-2 transition shadow-md">
+                            <i class="fa-brands fa-whatsapp text-base"></i>
+                            <span>Pedir no WhatsApp</span>
+                        </a>
+                        <button onclick="abrirModal(${prod.id})" title="Vista Rápida"
+                                class="py-3 px-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
                 `;
 
                 grid.appendChild(card);
             });
         }
+
+        // Abre o modal de vista rápida do produto
+        function abrirModal(id) {
+            const prod = PRODUTOS.find(p => p.id === id);
+            if (!prod) return;
+
+            document.getElementById('modal-badge').textContent = prod.destaqueBadge;
+            document.getElementById('modal-title').textContent = prod.nome;
+            document.getElementById('modal-price').textContent = prod.preco;
+            document.getElementById('modal-desc').textContent = prod.descricao;
+
+            const svgIlustracao = ILUSTRACOES_SVG[prod.svgKey] || ILUSTRACOES_SVG.chibi_geek;
+            document.getElementById('modal-visual').innerHTML = prod.imagem
+                ? `<img src="${prod.imagem}" alt="${prod.nome}" class="h-full object-contain rounded-xl">`
+                : `<div class="scale-125">${svgIlustracao}</div>`;
+
+            const msg = encodeURIComponent(`Olá Gandol3D! Gostaria de encomendar o modelo "${prod.nome}" que vi no catálogo.`);
+            document.getElementById('modal-whatsapp-link').href = `https://wa.me/${WHATSAPP_NUMERO}?text=${msg}`;
+
+            const modal = document.getElementById('quick-view-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function fecharModal() {
+            const modal = document.getElementById('quick-view-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Fecha modal ao clicar fora
+        document.getElementById('quick-view-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'quick-view-modal') fecharModal();
+        });
 
         // Envia o formulário de encomenda personalizada direto para o WhatsApp
         function enviarEncomendaWhatsApp(event) {
