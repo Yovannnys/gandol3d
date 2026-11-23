@@ -82,6 +82,14 @@
             box-shadow: 0 20px 35px -15px var(--accent-glow);
         }
 
+        /* Efeito de zoom suave nas imagens dos produtos */
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        .product-image {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         /* Botão principal dinâmico */
         .btn-accent {
             background-color: var(--accent-primary);
@@ -472,27 +480,24 @@
 
         /**
          * =========================================================================
-         * 2. CATÁLOGO DE PRODUTOS (COMO ADICIONAR SUAS FOTOS REAIS)
+         * 2. CATÁLOGO DE PRODUTOS (AGORA COM IMAGENS REAIS DO UNSPLASH)
          * =========================================================================
-         * Quando você tirar fotos das suas peças impressas:
-         * 1. Coloque a foto na mesma pasta do arquivo index.html (ex: "bob-esponja.jpg").
-         * 2. No produto desejado abaixo, preencha o campo imagem: "bob-esponja.jpg".
-         * 3. Enquanto estiver vazio (""), o site exibe automaticamente um visual
-         *    moderno com ícone e gradiente para não ficar nenhum espaço quebrado!
+         * As imagens abaixo são do Unsplash (gratuitas e sem direitos autorais).
+         * Substitua os URLs pelas fotos reais das suas peças quando disponível!
          */
         const PRODUTOS = [
             {
                 id: 1,
                 nome: "Bob Esponja Articulado Multicor",
                 categoria: "geek",
-                temporadas: ["natal", "aulas"], // Aparece também nos destaques dessas datas
+                temporadas: ["natal", "aulas"],
                 destaqueBadge: "Sucesso de Vendas",
                 descricao: "Boneco articulado montado em peças separadas com cores puras (amarelo, marrom, branco, vermelho e preto). Sem pintura que descasca!",
                 material: "PETG Multicor • Articulação Livre",
                 icone: "fa-face-smile-beam",
                 gradiente: "from-amber-500/30 via-yellow-500/20 to-amber-900/30",
                 corIcone: "text-amber-300",
-                imagem: "" // <-- Coloque aqui o nome da sua foto real, ex: "bob-esponja.jpg"
+                imagem: "https://images.unsplash.com/photo-1607453998774-d533f65dac99?w=600&auto=format&fit=crop&q=80" // Boneco amarelo articulado
             },
             {
                 id: 2,
@@ -505,7 +510,7 @@
                 icone: "fa-tree",
                 gradiente: "from-red-600/30 via-emerald-600/20 to-slate-900",
                 corIcone: "text-red-400",
-                imagem: ""
+                imagem: "https://images.unsplash.com/photo-1543589077-47d81606c1bf?w=600&auto=format&fit=crop&q=80" // Decoração de Natal
             },
             {
                 id: 3,
@@ -518,7 +523,7 @@
                 icone: "fa-mug-hot",
                 gradiente: "from-sky-500/30 via-blue-600/20 to-slate-900",
                 corIcone: "text-sky-300",
-                imagem: ""
+                imagem: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=600&auto=format&fit=crop&q=80" // Caneca personalizada
             },
             {
                 id: 4,
@@ -531,7 +536,7 @@
                 icone: "fa-futbol",
                 gradiente: "from-emerald-500/30 via-green-600/20 to-slate-900",
                 corIcone: "text-emerald-300",
-                imagem: ""
+                imagem: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&auto=format&fit=crop&q=80" // Bola de futebol
             },
             {
                 id: 5,
@@ -544,7 +549,7 @@
                 icone: "fa-heart",
                 gradiente: "from-rose-500/30 via-pink-600/20 to-slate-900",
                 corIcone: "text-rose-300",
-                imagem: ""
+                imagem: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&auto=format&fit=crop&q=80" // Corações
             },
             {
                 id: 6,
@@ -557,7 +562,7 @@
                 icone: "fa-sleigh",
                 gradiente: "from-red-500/30 via-amber-500/20 to-slate-900",
                 corIcone: "text-amber-300",
-                imagem: ""
+                imagem: "https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=600&auto=format&fit=crop&q=80" // Papai Noel
             },
             {
                 id: 7,
@@ -570,7 +575,7 @@
                 icone: "fa-mug-saucer",
                 gradiente: "from-indigo-500/30 via-purple-600/20 to-slate-900",
                 corIcone: "text-indigo-300",
-                imagem: ""
+                imagem: "https://images.unsplash.com/photo-1577937927133-66ef06acdf18?w=600&auto=format&fit=crop&q=80" // Caneca e porta-copos
             },
             {
                 id: 8,
@@ -583,7 +588,7 @@
                 icone: "fa-trophy",
                 gradiente: "from-yellow-500/30 via-amber-600/20 to-slate-900",
                 corIcone: "text-yellow-300",
-                imagem: ""
+                imagem: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=600&auto=format&fit=crop&q=80" // Troféu
             },
             {
                 id: 9,
@@ -596,7 +601,7 @@
                 icone: "fa-spa",
                 gradiente: "from-fuchsia-500/30 via-pink-500/20 to-slate-900",
                 corIcone: "text-fuchsia-300",
-                imagem: ""
+                imagem: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=600&auto=format&fit=crop&q=80" // Vaso com suculenta
             }
         ];
 
@@ -701,10 +706,13 @@
 
                 // Área visual: usa foto real se configurada, ou ilustração moderna com fallback
                 const visualHTML = prod.imagem
-                    ? `<img src="${prod.imagem}" alt="${prod.nome}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-48 object-cover rounded-2xl mb-4 border border-white/10">
-                       <div style="display:none;" class="w-full h-48 rounded-2xl mb-4 bg-gradient-to-br ${prod.gradiente} border border-white/10 flex flex-col items-center justify-center p-4 text-center">
-                           <i class="fa-solid ${prod.icone} text-5xl ${prod.corIcone} mb-2"></i>
-                           <span class="text-[11px] text-slate-300 font-medium">${prod.material}</span>
+                    ? `<div class="w-full h-48 rounded-2xl mb-4 overflow-hidden border border-white/10 relative">
+                           <img src="${prod.imagem}" alt="${prod.nome}" class="product-image w-full h-full object-cover" loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                           <div style="display:none;" class="w-full h-full bg-gradient-to-br ${prod.gradiente} flex flex-col items-center justify-center p-4 text-center">
+                               <i class="fa-solid ${prod.icone} text-5xl ${prod.corIcone} mb-2"></i>
+                               <span class="text-[11px] text-slate-300 font-medium">${prod.material}</span>
+                           </div>
                        </div>`
                     : `<div class="w-full h-48 rounded-2xl mb-4 bg-gradient-to-br ${prod.gradiente} border border-white/10 flex flex-col items-center justify-center p-4 text-center relative overflow-hidden group">
                            <i class="fa-solid ${prod.icone} text-5xl ${prod.corIcone} mb-2.5 transition-transform duration-300 group-hover:scale-110"></i>
